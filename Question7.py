@@ -21,5 +21,5 @@ def indexPrime(index):
         if isPrime(prime):
             tempIndex+=1
     print(prime)
-indexPrime(6)
+indexPrime(10001)
 
