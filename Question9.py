@@ -30,4 +30,3 @@ def pTrigle(a,b,c):
         return True
     return False
 isExist()
-#a:375 b:200 c:425
