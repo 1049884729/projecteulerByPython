@@ -25,6 +25,7 @@ def abc(b):
     return a
 
 def pTrigle(a,b,c):
+    '''判断是否符合勾股定理'''
     if a**2+b**2==c**2:
         return True
     return False
