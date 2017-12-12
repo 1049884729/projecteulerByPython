@@ -51,7 +51,7 @@ def multiNumber(num):
     temp = temptStr.replace('\n', '')
     for index in range(0, len(temp) - num):
         sub = temp[index:index + num]#每13个截取成一个字符串
-        if (len(sub) == num):
+        if (len(sub) == num):#求字符串长度
             itemMulti = 1
             for n in sub:#将临时截取的字符串遍历，转换成int求积
                 itemMulti *= int(n)
