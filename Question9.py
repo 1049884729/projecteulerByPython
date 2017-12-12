@@ -18,6 +18,7 @@ def isExist():
     print("a:%s b:%s c:%s"%(a,b,c))
     print("result: %s"%(a*b*c))
 def abc(b):
+    '''根据公式求出a和 b的关系'''
     if (2 * const - 2 * b)==0 :
         return b
     a = int((const ** 2 - 2 * const * b) / (2 * const - 2 * b))
