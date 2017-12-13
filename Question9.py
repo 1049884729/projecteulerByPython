@@ -4,7 +4,7 @@ a2+b2=C2
 求 abc的积
 '''
 const=1000
-def isExist():
+def main():
     a=1
     b=1
     c=1000-a-b
@@ -29,4 +29,4 @@ def pTrigle(a,b,c):
     if a**2+b**2==c**2:
         return True
     return False
-isExist()
+main()
