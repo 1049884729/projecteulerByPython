@@ -25,6 +25,7 @@ chart = '''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 
 chatArray = [[0 for i in range(20)] for j in range(20)]  # 初始化20x20的数组
 
+
 def getArray():
     '''
     将字符串分割成二维数组
@@ -35,73 +36,89 @@ def getArray():
         for y in range(0, 20):
             chatArray[x][y] = int(tempArray[x * 20 + y])
 
+
 def getUpToDown(number):
     '''
     从上到下
     :param number:
     :return:
     '''
-    tempProduct=set()
-    for x in range(0, 20):
-        for y in range(0, 20-number):
-            tempProduct.add(int(chatArray[x][y]*chatArray[x][y+1]*chatArray[x][y+2]*chatArray[x][y+3]))
+    tempProduct = set()
+    for x in range(0, 21 - number):
+        products = 1
+        for y in range(x, x + number):
+            products *= int(chatArray[x][y])
+        tempProduct.add(products)
     value = max(tempProduct)
     print(value)
 
     return value
+
+
 def getLeftToRight(number):
     '''
     从左到右
     :param number:
     :return:
     '''
-    tempProduct=set()
-    for x in range(0, 20-number):
-        for y in range(0, 20):
-            tempProduct.add(int(chatArray[x][y]*chatArray[x+1][y]*chatArray[x+2][y]*chatArray[x+3][y]))
+    tempProduct = set()
+    for x in range(0, 21 - number):
+        products = 1
+        for y in range(x, x+number):
+            products *= int(chatArray[x][y])
+        tempProduct.add(products)
     value = max(tempProduct)
     print(value)
-    print(tempProduct)
-
     return value
+
+
+
 def getLeftUpToRightDown(number):
     '''
-    从左上角到右下角
+    从左上角到右下角,编写代码时可通过打印坐标值查看计算的方向是否正确
     :param number:
     :return:
     '''
-    tempProduct=set()
-    for x in range(0, 20-number):
-        for y in range(0, 20-number):
-            tempProduct.add(int(chatArray[x][y]*chatArray[x+1][y+1]*chatArray[x+2][y+2]*chatArray[x+3][y+3]))
+    tempProduct = set()
+    for x in range(19,number,-1):
+        for y in range(0, 21 -number):
+            products = 1
+            for index in range(0, number):
+                # print("x:%s y:%s"%(x-index,y+index))#编写代码时可通过打印坐标值查看计算的方向是否正确
+                products *= int(chatArray[x-index][y + +index])
+            tempProduct.add(products)
     value = max(tempProduct)
     print(value)
     return value
+
+
 def getRightUpToLeftDown(number):
     '''
     从右上角到左下角
     :param number:
     :return:
     '''
-    tempProduct=set()
-    for x in range(19-number,0,-1):
-        for y in range(19-number,0,-1):
-            tempProduct.add(int(chatArray[x][y]*chatArray[x-1][y-1]*chatArray[x-2][y-2]*chatArray[x-3][y-3]))
-
-    value=max(tempProduct)
+    tempProduct = set()
+    for x in range(19 - number, -1, -1):
+        for y in range(19 - number, -1, -1):
+            products = 1
+            for index in range(number, 0, -1):
+                products *= int(chatArray[x + index][y + index])
+            tempProduct.add(products)
+    value = max(tempProduct)
     print(value)
 
     return value
 
+
 def resolveQuestion(number):
     getArray()
-    resultArray=set()
+    resultArray = set()
     resultArray.add(getLeftToRight(number))
     resultArray.add(getUpToDown(number))
     resultArray.add(getLeftUpToRightDown(number))
     resultArray.add(getRightUpToLeftDown(number))
-    print(max(resultArray))
+    print("max:%s" % max(resultArray))
 
-# resolveQuestion(4)
-getArray()
-getLeftToRight(4)
+
+resolveQuestion(4)
